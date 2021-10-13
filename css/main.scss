@@ -52,6 +52,13 @@ $on-laptop:        800px;
         "syntax-highlighting"
 ;
 
-tr {border-style: solid;
-    border-width: 1px
+tr {
+    border-style: solid;
+    border-width: 1px;
+}
+
+table {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;    
 }
