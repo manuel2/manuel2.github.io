@@ -1,1 +1,21 @@
 
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      background {
+        color: white;
+      }
+    </style>
+    
+    <script> 
+      var linkovi {"link1", "link2", "link3", "link4"}
+      var pozicije {4, 2, 1, 3}
+    </script>
+    
+  </head>
+    
+  <body>
+    Slike na link: <script>linkovi(pozicije(1))</script>
+  </body>
+</html>
