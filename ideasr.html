@@ -530,8 +530,8 @@
 		//	document.getElementById(`title${i}`).innerHTML = linkovi[i];
 		//}
 		i=0;
-		document.getElementById("img1").innerHTML = linkovi[i];
-		document.getElementById("title1").innerHTML = linkovi[i];
+		document.getElementById("img1").innerHTML = `<img src=${linkovi[i]}/>`;
+		document.getElementById(`title${i+1}`).innerHTML = linkovi[i+1];
 	</script>
    </body>
 </html>
