@@ -658,12 +658,16 @@
 		
 		temp="";
 		rand=0;
+		console.log((linkovi.length -1)/2);
 		
 		for(i=0; i < (linkovi.length -1)/2; i=i+2) {
 			rand = Math.floor(Math.random() * (linkovi.length -1)/2);
 			if (rand % 2) {
 				rand++;
 			}
+			
+			console.log(rand);
+			
 			temp = linkovi[i];
 			linkovi[i] = linkovi[rand];
 			linkovi[rand] = temp;
