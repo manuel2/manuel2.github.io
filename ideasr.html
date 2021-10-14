@@ -667,7 +667,7 @@
 				rand++;
 			}
 			
-			console.log(rand);
+			console.log("random for i=" +i+ "is="+rand);
 			
 			tempLink = linkovi[i];
 			tempTitle = linkovi[i+1]
@@ -681,6 +681,7 @@
 		for(i = 0, j=0; j < 138; j++) {
 			document.getElementById(`img${j+1}`).innerHTML = `<img src=${linkovi[i]}/>`;
 			document.getElementById(`title${j+1}`).innerHTML = linkovi[i+1];
+			console.log("inserted j="+j+" and i="+i+" and link" +linkovi[i+1]);
 			i=i+2;
 			
 		}
