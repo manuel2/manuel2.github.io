@@ -176,9 +176,10 @@
 			"https://i.imgur.com/J6jemN8.jpg", "225",
 			"https://i.imgur.com/qoFlFGW.jpg", "226"];
 			
-			for(i = 0; i < (linkovi.length -1); ) {
-				document.getElementById(`img${i}`).innerHTML = `<img src=${linkovi[i++]}/>`;
-				document.getElementById(`title${i}`).innerHTML = linkovi[i++];
+			for(i = 0; i < (linkovi.length -1); i++;) {
+				document.getElementById(`img${i}`).innerHTML = `<img src=${linkovi[i]}/>`;
+				i++;
+				document.getElementById(`title${i}`).innerHTML = linkovi[i];
 			}
 		
 		</script>
