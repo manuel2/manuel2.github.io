@@ -656,7 +656,8 @@
 			"https://i.imgur.com/qoFlFGW.jpg", "226"
 		];
 		
-		temp="";
+		tempLink="";
+		tempTitle="";
 		rand=0;
 		console.log((linkovi.length -1)/2);
 		
@@ -668,9 +669,12 @@
 			
 			console.log(rand);
 			
-			temp = linkovi[i];
+			tempLink = linkovi[i];
+			tempTitle = linkovi[i+1]
 			linkovi[i] = linkovi[rand];
-			linkovi[rand] = temp;
+			linkovi[i+1] = linkovi[rand+1];
+			linkovi[rand] = tempLink;
+			linkovi[rand+1] = tempTitle;
 		}
 			
 
