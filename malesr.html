@@ -393,7 +393,7 @@
 		
 		for(i=0; i < linkovi.length; i=i+2) {
 			rand = Math.floor(Math.random() * linkovi.length);
-			if (rand % 2) {
+			if ((rand % 2) && (rand < linkovi.length)) {
 				rand++;
 			}
 			
