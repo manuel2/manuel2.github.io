@@ -524,14 +524,17 @@
 		"https://i.imgur.com/5JJ8wu3.jpg", "011",
 		];
 
-		for(i = 0; i < (linkovi.length -1); i++;) {
-			document.getElementById(`img${i+1}`).innerHTML = `<img src=${linkovi[i]}/>`;
-			document.getElementById(`title${i+1}`).innerHTML = linkovi[i+1];
-			i=i++
-		}
-		//i=0;
-		//document.getElementById("img1").innerHTML = `<img src=${linkovi[i]}/>`;
-		//document.getElementById(`title${i+1}`).innerHTML = linkovi[i+1];
+		//for(i = 0; i < (linkovi.length -1); i++;) {
+		//	document.getElementById(`img${i+1}`).innerHTML = `<img src=${linkovi[i]}/>`;
+		//	document.getElementById(`title${i+1}`).innerHTML = linkovi[i+1];
+		//	i=i++
+		//}
+		i=0;
+		document.getElementById(`img${i+1}`).innerHTML = `<img src=${linkovi[i]}/>`;
+		document.getElementById(`title${i+1}`).innerHTML = linkovi[i+1];
+		i++;
+		document.getElementById(`img${i+1}`).innerHTML = `<img src=${linkovi[i]}/>`;
+		document.getElementById(`title${i+1}`).innerHTML = linkovi[i+1];
 	</script>
    </body>
 </html>
