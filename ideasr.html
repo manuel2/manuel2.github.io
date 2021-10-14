@@ -655,6 +655,20 @@
 			"https://i.imgur.com/J6jemN8.jpg", "225",
 			"https://i.imgur.com/qoFlFGW.jpg", "226"
 		];
+		
+		temp="";
+		rand=0;
+		
+		for(i=0; i < (linkovi.length -1)/2; i=i+2) {
+			rand = Math.floor(Math.random() * linkovi.length -1)/2);
+			if (rand % 2) {
+				rand++;
+			}
+			temp = linkovi[i];
+			linkovi[i] = linkovi[rand];
+			linkovi[rand] = temp;
+		}
+			
 
 		for(i = 0, j=0; j < (linkovi.length -1)/2; j++) {
 			document.getElementById(`img${j+1}`).innerHTML = `<img src=${linkovi[i]}/>`;
