@@ -177,23 +177,24 @@
 			"https://i.imgur.com/qoFlFGW.jpg", "226"];
 			
 			for(i = 0; i < (linkovi.length -1); ) {
-				document.getElementById(`#img${i}`).innerHTML = linkovi[i];
-				}
+				document.getElementById(`#img${i}`).innerHTML = `<img src=${linkovi[i++]}/>`;
+				document.getElementById(`#title${i}`).innerHTML = linkovi[i++];
+			}
 		
 		</script>
       <tr class="first">
-        <th id=#img1><img src="https://i.imgur.com/GFFUlUp.jpg"/></th>
-        <th id=#img2><img src="https://i.imgur.com/NMqDZeq.jpg"/></th>
-        <th id=#img3><img src="https://i.imgur.com/AMcHrRs.jpg"/></th>
-        <th id=#img4><img src="https://i.imgur.com/OZb4MoO.jpg"/></th>
-        <th id=#img5><img src="https://i.imgur.com/M5qHumA.jpg"/></th>
+        <th id=#img1></th>
+        <th id=#img2></th>
+        <th id=#img3></th>
+        <th id=#img4></th>
+        <th id=#img5></th>
       </tr>
       <tr class="second">
-        <th id=#title1>001</th>
-        <th id=#title2>002</th>
-        <th id=#title3>006</th>
-        <th id=#title4>007</th>
-        <th id=#title5>010</th>
+        <th id=#title1></th>
+        <th id=#title2></th>
+        <th id=#title3></th>
+        <th id=#title4></th>
+        <th id=#title5></th>
       </tr>
       <tr class="third">
         
