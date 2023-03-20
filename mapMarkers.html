@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Map with Custom Markers from CSV</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  <script>
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: {lat: 37.7749, lng: -122.4194}
+      });
+
+      // Initialize an empty array to store the markers
+      var markers = [];
+
+      // Create a function to add markers to the map
+      function addMarker(location, title, color) {
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map,
+          title: title,
+          icon: {
+            url: 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + color.substring(1),
+            labelOrigin: new google.maps.Point(11, 50)
+          }
+        });
+        markers.push(marker);
+      }
+
+      // Define the function to handle the file upload
+      function handleFileSelect(evt) {
+        var file = evt.target.files[0];
+        Papa.parse(file, {
+          header: true,
+          dynamicTyping: true,
+          complete: function(results) {
+            // Loop through the rows of the CSV file and add markers to the map
+            for (var i = 0; i < results.data.length; i++) {
+              var row = results.data[i];
+              var location = {lat: row.latitude, lng: row.longitude};
+              var title = row.title;
+              var color = row.color;
+              addMarker(location, title, color);
+            }
+          }
+        });
+      }
+
+      // Attach an event listener to the file input element
+      document.getElementById('file').addEventListener('change', handleFileSelect, false);
+    }
+  </script>
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body onload="initMap()">
+  <input type="file" id="file">
+  <div id="map"></div>
+</body>
+</html>
