@@ -1,42 +1,126 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      background {
-        color: white;
-      }
-      table {
-        border-style: solid;
-        border-collapse: collapse;
-      }
-      tr {
-        border-style: solid;
-        border-color: grey;
-      }
-      th {
-        border-style: solid;
-        border-color: grey;
-      }
-      tr.first {
-        border-style: solid;
-        border-size: 0.5px;
-      }
-      tr.second {
-        border-style: solid;
-        border-size: 0.5px;
-      }
-      tr.third {
-        height: 50px;
-        border-style: solid;
-      }
-    </style>
-  </head>
-  
-  
-  <body>
-    <h2>Projects</h2>
-     <a href="https://manuel2.github.io/indexHendalCards.html">Idea Cards</a> 
-     <a href="https://manuel2.github.io/mapMarkers.html">Map Markers</a>
-     <a href="https://manuel2.github.io/schedexport.html">Schedule export</a>
-  </body>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Schedule generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div class="header-inner">
+        <div class="brand" aria-label="Schedule generator">
+          <span class="brand-mark">S.</span>
+          <span>Schedule generator</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="intro" aria-labelledby="page-title">
+        <h1 id="page-title">Generate your calendar file</h1>
+        <p>Upload the schedule CSV file, select your name, and generate your calendar file.</p>
+      </section>
+
+      <section class="upload-card" aria-label="CSV file upload">
+        <input id="fileInput" type="file" accept=".csv,text/csv">
+
+        <div
+          id="dropZone"
+          class="drop-zone"
+          role="button"
+          tabindex="0"
+          aria-label="Drop a CSV file here or browse for one"
+        >
+          <div class="upload-content">
+            <div class="upload-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 16V4"></path>
+                <path d="m7.5 8.5 4.5-4.5 4.5 4.5"></path>
+                <path d="M5 14.5v3A2.5 2.5 0 0 0 7.5 20h9a2.5 2.5 0 0 0 2.5-2.5v-3"></path>
+              </svg>
+            </div>
+
+            <p class="drop-title">Drop your CSV file here</p>
+            <p class="drop-subtitle">or select a file from your device</p>
+
+            <button id="browseButton" class="browse-button" type="button">
+              Browse files
+            </button>
+          </div>
+        </div>
+
+        <p class="file-note">CSV files only</p>
+      </section>
+
+      <section
+        id="agent-section"
+        class="upload-card result-card"
+        aria-label="Agent selection"
+        hidden
+      >
+        <div class="result-content">
+          <p class="section-label">Step 2</p>
+
+          <h2>Select your name</h2>
+
+          <p class="section-description">
+            Choose the agent whose schedule should be used to generate the calendar file.
+          </p>
+
+          <label class="field-label" for="agentSelect">Agent</label>
+
+          <select id="agentSelect" class="select-control">
+            <option value="">Select an agent</option>
+          </select>
+        </div>
+      </section>
+
+      <section
+        id="format-section"
+        class="upload-card result-card"
+        aria-label="Calendar file generation"
+        hidden
+      >
+        <div class="result-content">
+          <p class="section-label">Step 3</p>
+
+          <h2>Generate calendar file</h2>
+
+          <p class="section-description">
+            The selected dates will be converted into one-hour calendar events in iCalendar format.
+          </p>
+
+          <button
+            id="generateButton"
+            class="browse-button"
+            type="button"
+            disabled
+          >
+            Generate calendar file
+          </button>
+
+          <p
+            id="statusMessage"
+            class="status-message"
+            aria-live="polite"
+          ></p>
+        </div>
+      </section>
+    </main>
+
+    <footer>Schedule generator · Internal tool</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
