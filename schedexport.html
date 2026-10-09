@@ -4,52 +4,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <title>Schedule .ics Generator</title>
-
+  <title>Schedule generator</title>
   <style>
     :root {
       color-scheme: light dark;
-
       --bg: light-dark(#f7f9fc, #101318);
       --surface: light-dark(#ffffff, #181c22);
       --surface-soft: light-dark(#f1f4f8, #20252d);
       --text: light-dark(#17202a, #eef2f7);
       --muted: light-dark(#66717e, #aab4c0);
       --border: light-dark(#dbe1e8, #343b46);
-
       --primary: light-dark(#3157c8, #8ea8ff);
       --primary-strong: light-dark(#2447ae, #aec0ff);
       --primary-contrast: light-dark(#ffffff, #101318);
-
-      --shadow:
-        light-dark(
-          0 10px 30px rgba(23, 32, 42, .08),
-          0 10px 30px rgba(0, 0, 0, .24)
-        );
-
+      --shadow: light-dark(0 10px 30px rgba(23, 32, 42, .08), 0 10px 30px rgba(0, 0, 0, .24));
       --radius: 16px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       min-height: 100vh;
-
-      font-family:
-        Inter,
-        ui-sans-serif,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
-
       -webkit-font-smoothing: antialiased;
     }
 
@@ -59,30 +38,17 @@
       border-radius: 0;
     }
 
-    /* -----------------------------
-       Header
-       ----------------------------- */
-
     header {
       height: 64px;
-
       display: flex;
       align-items: center;
-
       border-bottom: 1px solid var(--border);
-
-      background:
-        color-mix(
-          in srgb,
-          var(--surface) 92%,
-          transparent
-        );
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
     }
 
     .header-inner {
       width: min(100% - 40px, 1040px);
       margin: 0 auto;
-
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -92,7 +58,6 @@
       display: flex;
       align-items: center;
       gap: 10px;
-
       font-size: 17px;
       font-weight: 650;
       letter-spacing: -.01em;
@@ -101,108 +66,70 @@
     .brand-mark {
       width: 30px;
       height: 30px;
-
       display: grid;
       place-items: center;
-
       border-radius: 9px;
-
       background: var(--primary);
       color: var(--primary-contrast);
-
       font-size: 13px;
       font-weight: 800;
       letter-spacing: -.04em;
     }
 
-    /* -----------------------------
-       Main content
-       ----------------------------- */
-
     .main {
       width: min(100% - 40px, 760px);
       margin: 0 auto;
-
       padding: 76px 0 72px;
     }
 
     .intro {
+      text-align: center;
       max-width: 610px;
       margin: 0 auto 34px;
-
-      text-align: center;
     }
 
     h1 {
       margin: 0 0 12px;
-
       font-size: clamp(28px, 5vw, 40px);
       line-height: 1.15;
-
       letter-spacing: -.035em;
       font-weight: 720;
     }
 
     .intro p {
       margin: 0;
-
       color: var(--muted);
-
       font-size: 15px;
       line-height: 1.65;
     }
 
-    /* -----------------------------
-       Upload card
-       ----------------------------- */
-
     .upload-card {
-      padding: 22px;
-
       background: var(--surface);
-
       border: 1px solid var(--border);
       border-radius: var(--radius);
-
       box-shadow: var(--shadow);
+      padding: 22px;
     }
 
     .drop-zone {
       min-height: 280px;
-
+      border: 1.5px dashed var(--border);
+      border-radius: 12px;
+      background: var(--surface-soft);
       display: flex;
       align-items: center;
       justify-content: center;
-
-      padding: 30px 20px;
-
-      border: 1.5px dashed var(--border);
-      border-radius: 12px;
-
-      background: var(--surface-soft);
-
       text-align: center;
-
+      padding: 30px 20px;
       cursor: pointer;
-
-      transition:
-        border-color .18s ease,
-        background .18s ease,
-        transform .18s ease;
+      transition: border-color .18s ease, background .18s ease, transform .18s ease;
     }
 
     .drop-zone:hover,
     .drop-zone:focus-visible,
     .drop-zone.is-dragging {
       border-color: var(--primary);
-
-      background:
-        color-mix(
-          in srgb,
-          var(--primary) 8%,
-          var(--surface-soft)
-        );
-
+      background: color-mix(in srgb, var(--primary) 8%, var(--surface-soft));
       outline: none;
     }
 
@@ -214,543 +141,539 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-
       gap: 13px;
     }
-
-    /* -----------------------------
-       Upload icon
-       ----------------------------- */
 
     .upload-icon {
       width: 52px;
       height: 52px;
-
       display: grid;
       place-items: center;
-
       border-radius: 50%;
-
-      background:
-        color-mix(
-          in srgb,
-          var(--primary) 12%,
-          var(--surface)
-        );
-
+      background: color-mix(in srgb, var(--primary) 12%, var(--surface));
       color: var(--primary);
     }
 
-    .upload-icon svg {
-      width: 25px;
-      height: 25px;
-    }
-
-    /* -----------------------------
-       Upload text
-       ----------------------------- */
+    .upload-icon svg { width: 25px; height: 25px; }
 
     .drop-title {
       margin: 0;
-
       font-size: 16px;
       font-weight: 650;
     }
 
     .drop-subtitle {
       margin: -5px 0 2px;
-
       color: var(--muted);
-
       font-size: 13px;
     }
-
-    /* -----------------------------
-       Browse button
-       ----------------------------- */
 
     .browse-button {
       border: 0;
       border-radius: 9px;
-
       padding: 10px 18px;
-
       background: var(--primary);
       color: var(--primary-contrast);
-
       font: inherit;
       font-size: 14px;
       font-weight: 650;
-
       cursor: pointer;
-
-      box-shadow:
-        0 2px 6px
-        color-mix(
-          in srgb,
-          var(--primary) 22%,
-          transparent
-        );
-
-      transition:
-        background .18s ease,
-        transform .18s ease;
+      box-shadow: 0 2px 6px color-mix(in srgb, var(--primary) 22%, transparent);
+      transition: background .18s ease, transform .18s ease;
     }
 
-    .browse-button:hover {
-      background: var(--primary-strong);
+    .browse-button:hover { background: var(--primary-strong); }
+    .browse-button:active { transform: translateY(1px); }
+
+    .result-card {
+      margin-top: 18px;
     }
 
-    .browse-button:active {
-      transform: translateY(1px);
+    .result-content {
+      max-width: 520px;
+      margin: 0 auto;
     }
 
-    /* -----------------------------
-       File note
-       ----------------------------- */
+    .section-label {
+      margin: 0 0 5px;
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    h2 {
+      margin: 0 0 7px;
+      font-size: 20px;
+      letter-spacing: -.02em;
+    }
+
+    .section-description {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .field-label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .select-control {
+      width: 100%;
+      min-height: 44px;
+      padding: 0 12px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: var(--surface);
+      color: var(--text);
+      font: inherit;
+      font-size: 14px;
+    }
+
+    .select-control:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 1px;
+    }
+
+    .format-options {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .format-option {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .format-option:has(input:checked) {
+      border-color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 7%, var(--surface));
+    }
+
+    .format-option input {
+      accent-color: var(--primary);
+    }
+
+    .browse-button:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .status-message {
+      min-height: 18px;
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
 
     .file-note {
       margin: 15px 2px 0;
-
       color: var(--muted);
-
       font-size: 12px;
       text-align: center;
     }
-
-    /* -----------------------------
-       Footer
-       ----------------------------- */
 
     footer {
       width: min(100% - 40px, 1040px);
       margin: 0 auto;
-
       padding: 0 0 28px;
-
       color: var(--muted);
-
       font-size: 12px;
       text-align: center;
     }
 
-    /* Hide the actual file input.
-       The custom upload area triggers it. */
-
-    #fileInput {
-      display: none;
-    }
-
-    /* -----------------------------
-       Mobile
-       ----------------------------- */
+    #fileInput { display: none; }
 
     @media (max-width: 600px) {
-
-      .header-inner,
-      footer {
-        width: min(100% - 28px, 1040px);
-      }
-
-      .main {
-        width: min(100% - 28px, 760px);
-
-        padding: 54px 0 56px;
-      }
-
-      .upload-card {
-        padding: 14px;
-      }
-
-      .drop-zone {
-        min-height: 250px;
-      }
+      .header-inner, footer { width: min(100% - 28px, 1040px); }
+      .main { width: min(100% - 28px, 760px); padding: 54px 0 56px; }
+      .upload-card { padding: 14px; }
+      .drop-zone { min-height: 250px; }
+      .format-options { flex-direction: column; }
     }
   </style>
 </head>
-
 <body>
-
   <div id="app">
-
-    <!-- =========================
-         HEADER
-         ========================= -->
-
     <header>
       <div class="header-inner">
-
-        <div
-          class="brand"
-          aria-label="Schedul .ical Generator"
-        >
-
-          <span class="brand-mark">
-            S.
-          </span>
-
-          <span>
-            Schedule .ics Generator
-          </span>
-
+        <div class="brand" aria-label="Schedule generator">
+          <span class="brand-mark">S.</span>
+          <span>Schedule generator</span>
         </div>
-
       </div>
     </header>
 
-
-    <!-- =========================
-         MAIN CONTENT
-         ========================= -->
-
     <main class="main">
-
-      <!-- Introduction -->
-
-      <section
-        class="intro"
-        aria-labelledby="page-title"
-      >
-
-        <h1 id="page-title">
-          Generate your .ical file
-        </h1>
-
-        <p>
-          Upload the schedule CSV file to prepare it
-          for .ical generation. Choose a file below
-          or drop it into the upload area.
-        </p>
-
+      <section class="intro" aria-labelledby="page-title">
+        <h1 id="page-title">Generate your calendar file</h1>
+        <p>Upload the schedule CSV file, select your name, and generate your calendar file.</p>
       </section>
 
-
-      <!-- Upload area -->
-
-      <section
-        class="upload-card"
-        aria-label="CSV file upload"
-      >
-
-        <!-- Actual browser file selector -->
-
-        <input
-          id="fileInput"
-          type="file"
-          accept=".csv,text/csv"
-        >
-
-
-        <!-- Drag & drop area -->
-
-        <div
-          id="dropZone"
-          class="drop-zone"
-          role="button"
-          tabindex="0"
-          aria-label="Drop a CSV file here or browse for one"
-        >
-
+      <section class="upload-card" aria-label="CSV file upload">
+        <input id="fileInput" type="file" accept=".csv,text/csv">
+        <div id="dropZone" class="drop-zone" role="button" tabindex="0" aria-label="Drop a CSV file here or browse for one">
           <div class="upload-content">
-
-            <!-- Upload icon -->
-
-            <div
-              class="upload-icon"
-              aria-hidden="true"
-            >
-
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-
+            <div class="upload-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 16V4"></path>
-
-                <path
-                  d="m7.5 8.5 4.5-4.5 4.5 4.5"
-                ></path>
-
-                <path
-                  d="M5 14.5v3A2.5 2.5 0 0 0 7.5 20h9a2.5 2.5 0 0 0 2.5-2.5v-3"
-                ></path>
-
+                <path d="m7.5 8.5 4.5-4.5 4.5 4.5"></path>
+                <path d="M5 14.5v3A2.5 2.5 0 0 0 7.5 20h9a2.5 2.5 0 0 0 2.5-2.5v-3"></path>
               </svg>
-
             </div>
-
-
-            <!-- Upload text -->
-
-            <p class="drop-title">
-              Drop your CSV file here
-            </p>
-
-            <p class="drop-subtitle">
-              or select a file from your device
-            </p>
-
-
-            <!-- Browse button -->
-
-            <button
-              id="browseButton"
-              class="browse-button"
-              type="button"
-            >
-              Browse files
-            </button>
-
+            <p class="drop-title">Drop your CSV file here</p>
+            <p class="drop-subtitle">or select a file from your device</p>
+            <button id="browseButton" class="browse-button" type="button">Browse files</button>
           </div>
-
         </div>
-
-
-        <!-- File type information -->
-
-        <p class="file-note">
-          CSV files only
-        </p>
-
+        <p class="file-note">CSV files only</p>
       </section>
 
+      <section id="agent-section" class="upload-card result-card" aria-label="Agent selection" hidden>
+        <div class="result-content">
+          <p class="section-label">Step 2</p>
+          <h2>Select your name</h2>
+          <p class="section-description">Choose the agent whose schedule should be used to generate the calendar file.</p>
+          <label class="field-label" for="agentSelect">Agent</label>
+          <select id="agentSelect" class="select-control">
+            <option value="">Select an agent</option>
+          </select>
+        </div>
+      </section>
+
+      <section id="format-section" class="upload-card result-card" aria-label="Calendar format selection" hidden>
+        <div class="result-content">
+          <p class="section-label">Step 3</p>
+          <h2>Generate calendar file</h2>
+          <p class="section-description">The selected dates will be converted into one-hour calendar events in iCalendar format.</p>
+          <button id="generateButton" class="browse-button" type="button" disabled>Generate calendar file</button>
+          <p id="statusMessage" class="status-message" aria-live="polite"></p>
+        </div>
+      </section>
     </main>
 
-
-    <!-- =========================
-         FOOTER
-         ========================= -->
-
-    <footer>
-      Schedul · Internal tool
-    </footer>
-
+    <footer>Schedule generator · Internal tool</footer>
   </div>
 
-
-  <!-- =========================
-       JAVASCRIPT
-       ========================= -->
-
   <script>
+    const fileInput = document.getElementById('fileInput');
+    const dropZone = document.getElementById('dropZone');
+    const browseButton = document.getElementById('browseButton');
+    const agentSection = document.getElementById('agent-section');
+    const agentSelect = document.getElementById('agentSelect');
+    const formatSection = document.getElementById('format-section');
+    const generateButton = document.getElementById('generateButton');
+    const statusMessage = document.getElementById('statusMessage');
 
-    /*
-     * Get references to the important elements.
-     */
+    let csvRows = [];
 
-    const fileInput =
-      document.getElementById('fileInput');
+    browseButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      fileInput.click();
+    });
 
-    const dropZone =
-      document.getElementById('dropZone');
-
-    const browseButton =
-      document.getElementById('browseButton');
-
-
-    /*
-     * Browse button
-     *
-     * Clicking the custom button opens
-     * the browser's file selector.
-     */
-
-    browseButton.addEventListener(
-      'click',
-      (event) => {
-
-        event.stopPropagation();
-
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
         fileInput.click();
-
       }
-    );
+    });
 
+    ['dragenter', 'dragover'].forEach(type => {
+      dropZone.addEventListener(type, event => {
+        event.preventDefault();
+        dropZone.classList.add('is-dragging');
+      });
+    });
 
-    /*
-     * Clicking anywhere inside the drop zone
-     * also opens the file selector.
-     */
+    ['dragleave', 'drop'].forEach(type => {
+      dropZone.addEventListener(type, event => {
+        event.preventDefault();
+        dropZone.classList.remove('is-dragging');
+      });
+    });
 
-    dropZone.addEventListener(
-      'click',
-      () => {
+    dropZone.addEventListener('drop', event => {
+      const files = event.dataTransfer.files;
+      if (files.length) handleFile(files[0]);
+    });
 
-        fileInput.click();
+    fileInput.addEventListener('change', event => {
+      if (event.target.files.length) handleFile(event.target.files[0]);
+    });
 
-      }
-    );
+    agentSelect.addEventListener('change', () => {
+      const selectedAgent = agentSelect.value;
+      formatSection.hidden = !selectedAgent;
+      generateButton.disabled = !selectedAgent;
+      statusMessage.textContent = selectedAgent
+        ? `${countAgentDates(selectedAgent)} calendar event(s) ready to generate.`
+        : '';
+    });
 
-
-    /*
-     * Keyboard accessibility.
-     *
-     * Enter or Space while the drop zone
-     * is focused opens the file selector.
-     */
-
-    dropZone.addEventListener(
-      'keydown',
-      (event) => {
-
-        if (
-          event.key === 'Enter' ||
-          event.key === ' '
-        ) {
-
-          event.preventDefault();
-
-          fileInput.click();
-
-        }
-
-      }
-    );
-
-
-    /*
-     * Dragging a file over the drop zone.
-     */
-
-    ['dragenter', 'dragover'].forEach(
-      (type) => {
-
-        dropZone.addEventListener(
-          type,
-          (event) => {
-
-            event.preventDefault();
-
-            dropZone.classList.add(
-              'is-dragging'
-            );
-
-          }
-        );
-
-      }
-    );
-
-
-    /*
-     * Remove the visual drag state when
-     * the file leaves the area or is dropped.
-     */
-
-    ['dragleave', 'drop'].forEach(
-      (type) => {
-
-        dropZone.addEventListener(
-          type,
-          (event) => {
-
-            event.preventDefault();
-
-            dropZone.classList.remove(
-              'is-dragging'
-            );
-
-          }
-        );
-
-      }
-    );
-
-
-    /*
-     * Handle a file dropped onto the zone.
-     */
-
-    dropZone.addEventListener(
-      'drop',
-      (event) => {
-
-        const files =
-          event.dataTransfer.files;
-
-        if (files.length) {
-
-          handleFile(files[0]);
-
-        }
-
-      }
-    );
-
-
-    /*
-     * Handle a file selected through
-     * the normal browser file picker.
-     */
-
-    fileInput.addEventListener(
-      'change',
-      (event) => {
-
-        if (event.target.files.length) {
-
-          handleFile(
-            event.target.files[0]
-          );
-
-        }
-
-      }
-    );
-
-
-    /*
-     * File handler.
-     *
-     * At this stage we only verify that
-     * the selected file is a CSV.
-     *
-     * The actual CSV parsing and .ical
-     * generation will be added in the
-     * next development step.
-     */
+    generateButton.addEventListener('click', () => {
+      generateCalendarFile();
+    });
 
     function handleFile(file) {
-
-      if (
-        !file.name
-          .toLowerCase()
-          .endsWith('.csv')
-      ) {
-
-        alert(
-          'Please select a CSV file.'
-        );
-
+      if (!file.name.toLowerCase().endsWith('.csv')) {
+        alert('Please select a CSV file.');
         return;
       }
+      const reader = new FileReader();
 
+      reader.onload = event => {
+        try {
+          csvRows = parseCsv(event.target.result);
 
-      /*
-       * Placeholder for the next stage:
-       *
-       * 1. Read CSV
-       * 2. Parse CSV
-       * 3. Extract data
-       * 4. Transform data
-       * 5. Generate .ical
-       * 6. Download .ical
-       */
+          const agents = [...new Set(
+            csvRows.map(row => row['Agent Name']).filter(Boolean)
+          )];
 
-      console.log(
-        'Selected CSV:',
-        file.name,
-        file.size,
-        'bytes'
-      );
+          if (!agents.length) {
+            throw new Error('No Agent Name values were found in the CSV.');
+          }
 
+          agentSelect.innerHTML = '<option value="">Select an agent</option>';
+
+          agents.forEach(agent => {
+            const option = document.createElement('option');
+            option.value = agent;
+            option.textContent = agent;
+            agentSelect.appendChild(option);
+          });
+
+          agentSection.hidden = false;
+          formatSection.hidden = true;
+          generateButton.disabled = true;
+          statusMessage.textContent = '';
+
+          agentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (error) {
+          csvRows = [];
+          agentSection.hidden = true;
+          formatSection.hidden = true;
+          alert(`Could not read the CSV file. ${error.message}`);
+        }
+      };
+
+      reader.onerror = () => alert('The CSV file could not be read.');
+      reader.readAsText(file, 'UTF-8');
     }
 
-  </script>
+    function parseCsv(text) {
+      const rows = [];
+      let row = [];
+      let field = '';
+      let insideQuotes = false;
 
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const next = text[i + 1];
+
+        if (char === '"') {
+          if (insideQuotes && next === '"') {
+            field += '"';
+            i++;
+          } else {
+            insideQuotes = !insideQuotes;
+          }
+        } else if (char === ',' && !insideQuotes) {
+          row.push(field);
+          field = '';
+        } else if ((char === '\n' || char === '\r') && !insideQuotes) {
+          if (char === '\r' && next === '\n') i++;
+          row.push(field);
+          field = '';
+          if (row.some(value => value.trim() !== '')) rows.push(row);
+          row = [];
+        } else {
+          field += char;
+        }
+      }
+
+      row.push(field);
+      if (row.some(value => value.trim() !== '')) rows.push(row);
+
+      if (rows.length < 2) throw new Error('The CSV contains no data rows.');
+
+      const headers = rows[0].map(header => header.trim());
+      const requiredHeaders = [
+        'Agent Name', 'Time zone', 'Scheduled Date', 'Type', 'Activity Code',
+        'Start Time', 'End Time', 'Paid Hours', 'Duration', 'Comments'
+      ];
+
+      const missingHeaders = requiredHeaders.filter(header => !headers.includes(header));
+      if (missingHeaders.length) {
+        throw new Error(`Missing column(s): ${missingHeaders.join(', ')}`);
+      }
+
+      return rows.slice(1).map(values => {
+        const object = {};
+        headers.forEach((header, index) => {
+          object[header] = (values[index] ?? '').trim();
+        });
+        return object;
+      });
+    }
+
+    function getSelectedAgentDates(agent) {
+      const selectedRows = csvRows.filter(row => row['Agent Name'] === agent);
+      const seenDates = new Set();
+      const firstRowForDate = [];
+
+      for (const row of selectedRows) {
+        const date = row['Scheduled Date'];
+        if (!date || seenDates.has(date)) continue;
+        seenDates.add(date);
+        firstRowForDate.push(row);
+      }
+
+      return firstRowForDate;
+    }
+
+    function countAgentDates(agent) {
+      return getSelectedAgentDates(agent).length;
+    }
+
+    function generateCalendarFile() {
+      const agent = agentSelect.value;
+      const rows = getSelectedAgentDates(agent);
+      if (!agent || !rows.length) return;
+
+      const events = rows.map(row => createEvent(row));
+      const calendar = buildCalendar(events);
+      const safeAgent = agent.replace(/[^a-z0-9_-]+/gi, '_');
+      downloadText(calendar, `${safeAgent}_schedule.ics`, 'text/calendar;charset=utf-8');
+      statusMessage.textContent = `Generated ${events.length} event(s) for ${agent}.`;
+    }
+
+    function createEvent(row) {
+      const start = parseCalendarStart(row['Scheduled Date'], row['Start Time']);
+      const end = addOneHour(start);
+      const timezone = row['Time zone'];
+
+      return {
+        summary: row['Activity Code'],
+        timezone,
+        startValue: start.value,
+        endValue: end.value,
+        uid: `${row['Agent Name']}-${row['Scheduled Date']}-${start.value}@schedule-generator`,
+        timestamp: formatUtcTimestamp(new Date())
+      };
+    }
+
+    function parseCalendarStart(dateText, timeText) {
+      const dateMatch = dateText.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      const timeMatch = timeText.match(/^(\d{1,2}):(\d{2})(AM|PM)$/i);
+
+      if (!dateMatch || !timeMatch) {
+        throw new Error(`Invalid date or time: ${dateText} ${timeText}`);
+      }
+
+      let hour = Number(timeMatch[1]);
+      const minute = Number(timeMatch[2]);
+      const meridiem = timeMatch[3].toUpperCase();
+
+      if (hour < 1 || hour > 12 || minute > 59) {
+        throw new Error(`Invalid time: ${timeText}`);
+      }
+
+      if (meridiem === 'AM' && hour === 12) hour = 0;
+      if (meridiem === 'PM' && hour !== 12) hour += 12;
+
+      return {
+        year: Number(dateMatch[1]),
+        month: Number(dateMatch[2]),
+        day: Number(dateMatch[3]),
+        hour,
+        minute,
+        value: `${dateMatch[1]}${dateMatch[2]}${dateMatch[3]}T${String(hour).padStart(2, '0')}${String(minute).padStart(2, '0')}00`
+      };
+    }
+
+    function addOneHour(start) {
+      let hour = start.hour + 1;
+      let day = start.day;
+      let month = start.month;
+      let year = start.year;
+
+      if (hour === 24) {
+        hour = 0;
+        const nextDay = new Date(Date.UTC(year, month - 1, day + 1));
+        year = nextDay.getUTCFullYear();
+        month = nextDay.getUTCMonth() + 1;
+        day = nextDay.getUTCDate();
+      }
+
+      const pad = value => String(value).padStart(2, '0');
+      return {
+        value: `${year}${pad(month)}${pad(day)}T${pad(hour)}${pad(start.minute)}00`
+      };
+    }
+
+    function formatUtcTimestamp(date) {
+      return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
+    }
+
+    function buildCalendar(events) {
+      const lines = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Schedule Generator//EN',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH'
+      ];
+
+      events.forEach(event => {
+        lines.push('BEGIN:VEVENT');
+        lines.push(`UID:${event.uid}`);
+        lines.push(`DTSTAMP:${event.timestamp}`);
+        lines.push(`SUMMARY:${escapeCalendarText(event.summary)}`);
+        lines.push(`DTSTART;TZID=${escapeCalendarText(event.timezone)}:${event.startValue}`);
+        lines.push(`DTEND;TZID=${escapeCalendarText(event.timezone)}:${event.endValue}`);
+        lines.push('END:VEVENT');
+      });
+
+      lines.push('END:VCALENDAR');
+      return lines.join('\r\n') + '\r\n';
+    }
+
+    function escapeCalendarText(value) {
+      return String(value)
+        .replace(/\\/g, '\\\\')
+        .replace(/;/g, '\\;')
+        .replace(/,/g, '\\,')
+        .replace(/\r?\n/g, '\\n');
+    }
+
+    function downloadText(content, filename, type) {
+      const blob = new Blob([content], { type });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+  </script>
 </body>
 </html>
